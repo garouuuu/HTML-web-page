@@ -113,3 +113,22 @@ const observer = new IntersectionObserver((entries)=>{
 
 const hiddenElements= document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
+
+
+
+//FETCH APO DATABASE DEDOMENA GIA USER =
+
+const username = 'cleogeo'; // Replace with the username you want to query
+
+        fetch(`getUserInfo.php?username=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                const userInfoDiv = document.getElementById('user-info');  // TO ID (DEN UPARXEI MEXRI STIGMHS GRAMMENO)
+                userInfoDiv.innerHTML = `
+                    <p>Username: ${data.username}</p>
+                    <p>Email: ${data.email}</p>
+                    <p>Location: ${data.location}</p>
+                    <!-- Add other user information fields here -->
+                `;
+            })
+            .catch(error => console.error('Error fetching user information:', error));
